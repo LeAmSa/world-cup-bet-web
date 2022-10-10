@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useLocalStorage } from "react-use";
 import { Navigate } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
 
 //Validando os dados
 const validationSchema = yup.object().shape({
@@ -66,7 +67,7 @@ function Login() {
             name="email"
             type="text"
             placeholder="Digite seu email"
-            label="Seu e-mail"
+            label="Seu e-mail:"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -77,7 +78,7 @@ function Login() {
             name="password"
             type="password"
             placeholder="Digite sua senha"
-            label="Sua senha"
+            label="Sua senha:"
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -86,10 +87,14 @@ function Login() {
 
           <button
             type="submit"
-            className="block w-full text-white bg-red-500 text-lg md:text-xl px-6 py-3 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex justify-center items-center w-full text-white bg-red-500 text-lg md:text-xl px-6 py-3 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={!formik.isValid || formik.isSubmitting}
           >
-            {formik.isSubmitting ? "Carregando..." : "Entrar"}
+            {formik.isSubmitting ? (
+              <TailSpin height="28" width="28" color="white" />
+            ) : (
+              "Entrar"
+            )}
           </button>
         </form>
       </main>
