@@ -1,11 +1,13 @@
 import MatchCard from "~/components/MatchCard";
 import Icon from "~/components/Icon";
 import DateSelect from "../../components/DateSelect";
-import { Navigate, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format, formatISO } from "date-fns";
 import { useLocalStorage, useAsyncFn } from "react-use";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
+import { BiLogOut } from "react-icons/bi";
 
 function Profile() {
   const params = useParams();
@@ -69,8 +71,8 @@ function Profile() {
         <div className="container max-w-3xl flex justify-between">
           <img className="w-28 md:w-40" src="/logo-bg-red.svg" />
           {auth?.user?.id && (
-            <div className="cursor-pointer" onClick={logout}>
-              Sair
+            <div className="cursor-pointer" onClick={logout} title="Sair">
+              <BiLogOut size={26} />
             </div>
           )}
         </div>
@@ -91,8 +93,8 @@ function Profile() {
 
           <DateSelect currentDate={currentDate} onChange={setCurrentDate} />
 
-          <div className="space-y-4">
-            {isLoading && "Carregando jogos..."}
+          <div className="flex flex-col items-center space-y-4">
+            {isLoading && <ThreeDots color="#AF053F" height="28" width="28" />}
             {hasError && "Ops, algo deu errado."}
 
             {isDone &&
