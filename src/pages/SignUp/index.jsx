@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { Navigate } from "react-router-dom";
 import { useLocalStorage } from "react-use";
 import { useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 
 //Validando os dados
 const validationSchema = yup.object().shape({
@@ -70,12 +71,12 @@ function SignUp() {
           <h2 className="text-xl font-bold">Crie sua conta</h2>
         </div>
 
-        <form className=" p-4 space-y-6" onSubmit={formik.handleSubmit}>
+        <form className=" p-4 space-y-3" onSubmit={formik.handleSubmit}>
           <Input
             name="name"
             type="text"
             placeholder="Digite seu nome"
-            label="Seu nome"
+            label="Seu nome:"
             value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -86,7 +87,7 @@ function SignUp() {
             name="username"
             type="text"
             placeholder="Digite um nome de usuário"
-            label="Seu nome de usuário"
+            label="Seu nome de usuário:"
             value={formik.values.username}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -96,7 +97,7 @@ function SignUp() {
             name="email"
             type="text"
             placeholder="Digite seu email"
-            label="Seu e-mail"
+            label="Seu e-mail:"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -107,7 +108,7 @@ function SignUp() {
             name="password"
             type="password"
             placeholder="Digite sua senha"
-            label="Sua senha"
+            label="Sua senha:"
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -116,10 +117,14 @@ function SignUp() {
 
           <button
             type="submit"
-            className="block w-full text-white bg-red-500 text-lg md:text-xl px-6 py-3 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex justify-center items-center w-full text-white bg-red-500 text-lg md:text-xl px-6 py-3 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={!formik.isValid || formik.isSubmitting}
           >
-            {formik.isSubmitting ? "Carregando..." : "Criar minha conta"}
+            {formik.isSubmitting ? (
+              <TailSpin height="28" width="28" color="white" />
+            ) : (
+              "Criar minha conta"
+            )}
           </button>
         </form>
       </main>
