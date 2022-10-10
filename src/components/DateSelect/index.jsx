@@ -20,7 +20,11 @@ function DateSelect({ currentDate, onChange }) {
     <div className="flex p-4 space-x-4 justify-center items-center">
       <Icon
         name="arrowLeft"
-        className="text-red-500 hover:cursor-pointer"
+        className={
+          date.getDate() === 20
+            ? "pointer-events-none opacity-20"
+            : "text-red-500 hover:cursor-pointer"
+        }
         onClick={goToPrevDay}
       />
       <span className="font-bold text-base">
@@ -28,7 +32,11 @@ function DateSelect({ currentDate, onChange }) {
       </span>
       <Icon
         name="arrowRight"
-        className="text-red-500 hover:cursor-pointer"
+        className={
+          date.getDate() === 2
+            ? "pointer-events-none opacity-20"
+            : "text-red-500 hover:cursor-pointer"
+        }
         onClick={goToNextDay}
       />
     </div>
@@ -36,3 +44,6 @@ function DateSelect({ currentDate, onChange }) {
 }
 
 export default DateSelect;
+
+//text-red-500 hover:cursor-pointer
+//pointer-events-none cursor-not-allowed opacity-20
