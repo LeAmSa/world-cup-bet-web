@@ -9,13 +9,13 @@ export function Home() {
   }
 
   return (
-    <div className=" h-screen p-4 bg-red-700 text-white flex flex-col items-center justify-center space-y-6">
+    <div className=" h-screen w-full p-4 bg-red-700 text-white flex flex-col items-center justify-center space-y-6">
       <header className="container flex justify-center max-w-5xl p-4">
         <img className="w-40" src="/logo-bg-wine.svg" />
       </header>
       <div className="container max-w-6xl flex flex-col flex-1 p-4 items-center md:flex-row space-y-6 md:space-y-0 md:space-x-6">
         <div className="md:flex-1 flex justify-center">
-          <img className="w-full max-w-[250px] md:max-w-lg" src="/photo.png" />
+          <img className="w-full max-w-[240px] md:max-w-lg" src="/photo.png" />
         </div>
         <div className="flex flex-col flex-1 space-y-6">
           <h1 className="text-xl md:text-3xl font-bold text-center md:text-left">
