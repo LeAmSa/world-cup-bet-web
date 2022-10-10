@@ -43,16 +43,16 @@ function MatchCard({
   });
 
   return (
-    <div className="rounded-xl border border-gray-300 p-4 text-center space-y-4">
+    <div className="w-full rounded-xl border border-gray-300 p-4 text-center space-y-4 shadow-md">
       <span className="text-sm md:text-base text-gray-700 font-bold">
         {gameTime}
       </span>
 
-      <form className="flex space-x-4 justify-center items-center">
-        <span className="uppercase">{homeTeam}</span>
+      <form className="flex space-x-1 md:space-x-4 justify-center items-center">
+        <span className="uppercase font-bold">{homeTeam}</span>
         <img src={`/flags/${homeTeam}.png`} />
         <input
-          className="bg-red-300/[.2] w-14 h-14 text-red-700 text-xl text-center"
+          className="bg-red-300/[.2] w-14 h-14 text-red-700 text-xl text-center rounded-md"
           type="number"
           name="homeTeamScore"
           value={formik.values.homeTeamScore}
@@ -64,7 +64,7 @@ function MatchCard({
         <span className="text-red-500 font-bold">X</span>
 
         <input
-          className="bg-red-300/[.2] w-14 h-14 text-red-700 text-xl text-center"
+          className="bg-red-300/[.2] w-14 h-14 text-red-700 text-xl text-center rounded-md"
           type="number"
           name="awayTeamScore"
           value={formik.values.awayTeamScore}
@@ -73,7 +73,7 @@ function MatchCard({
           disabled={disabled}
         />
         <img src={`/flags/${awayTeam}.png`} />
-        <span className="uppercase">{awayTeam}</span>
+        <span className="uppercase font-bold">{awayTeam}</span>
       </form>
     </div>
   );
