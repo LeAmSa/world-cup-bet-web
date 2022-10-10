@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import MatchCard from "~/components/MatchCard";
 import Icon from "~/components/Icon";
 import DateSelect from "../../components/DateSelect";
-import { useLocalStorage, useAsyncFn, useAsync } from "react-use";
+import { useLocalStorage, useAsyncFn } from "react-use";
 import axios from "axios";
 import { format, formatISO } from "date-fns";
 import { Navigate } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 
 function Dashboard() {
   const [currentDate, setCurrentDate] = useState(
@@ -14,19 +15,22 @@ function Dashboard() {
 
   const [auth] = useLocalStorage("auth", {});
 
-  const [bets, fetchBets] = useAsyncFn(async () => {
+  const [{ value: user, loading, error }, fetchBets] = useAsyncFn(async () => {
     const res = await axios({
       method: "get",
       baseURL: import.meta.env.VITE_API_URL,
       url: `/${auth.user.username}`,
     });
 
-    const bets = res.data.reduce((acc, bet) => {
+    const bets = res.data.bets.reduce((acc, bet) => {
       acc[bet.matchId] = bet;
       return acc;
     }, {});
 
-    return bets;
+    return {
+      ...res.data,
+      bets,
+    };
   });
 
   //recebendo os dados
@@ -40,8 +44,8 @@ function Dashboard() {
     return res.data;
   });
 
-  const isLoading = matches.loading || bets.loading;
-  const hasError = matches.error || bets.error;
+  const isLoading = matches.loading || loading;
+  const hasError = matches.error || error;
   const isDone = !isLoading && !hasError;
 
   useEffect(() => {
@@ -78,8 +82,8 @@ function Dashboard() {
         <section id="content" className="container max-w-3xl p-4 space-y-4">
           <DateSelect currentDate={currentDate} onChange={setCurrentDate} />
 
-          <div className="space-y-4">
-            {isLoading && "Carregando jogos..."}
+          <div className="flex flex-col items-center space-y-4">
+            {isLoading && <ThreeDots color="#AF053F" height="28" width="28" />}
             {hasError && "Ops, algo deu errado."}
 
             {isDone &&
@@ -90,8 +94,8 @@ function Dashboard() {
                   homeTeam={match.homeTeam}
                   awayTeam={match.awayTeam}
                   gameTime={format(new Date(match.gameTime), "H:mm")}
-                  homeTeamScore={bets?.value?.[match.id]?.homeTeamScore || ""}
-                  awayTeamScore={bets?.value?.[match.id]?.awayTeamScore || ""}
+                  homeTeamScore={user?.bets?.[match.id]?.homeTeamScore || ""}
+                  awayTeamScore={user?.bets?.[match.id]?.awayTeamScore || ""}
                 />
               ))}
           </div>
