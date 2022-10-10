@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite -- --host",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -16,6 +16,8 @@
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.4.1",
     "react-use": "^17.4.0",
     "sort-by": "^0.0.2",
