@@ -5,8 +5,8 @@ import { useLocalStorage } from "react-use";
 
 //Validando os dados
 const validationSchema = yup.object().shape({
-  homeTeamScore: yup.string().required(),
-  awayTeamScore: yup.string().required(),
+  homeTeamScore: yup.number().required(),
+  awayTeamScore: yup.number().required(),
 });
 
 function MatchCard({
