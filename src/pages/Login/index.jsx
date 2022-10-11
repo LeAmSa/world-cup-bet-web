@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Icon from "../../components/Icon";
 import Input from "../../components/Input";
 import axios from "axios";
@@ -18,22 +19,35 @@ const validationSchema = yup.object().shape({
 
 function Login() {
   const [auth, setAuth] = useLocalStorage("auth", {});
+  const [userNotFound, setUserNotFound] = useState(false);
   const formik = useFormik({
     onSubmit: async (values) => {
-      const res = await axios({
-        method: "get",
-        baseURL: import.meta.env.VITE_API_URL,
-        url: "/login",
-        auth: {
-          username: values.email,
-          password: values.password,
-        },
-      });
+      try {
+        const res = await axios({
+          method: "get",
+          baseURL: import.meta.env.VITE_API_URL,
+          url: "/login",
+          auth: {
+            username: values.email,
+            password: values.password,
+          },
+        });
 
-      console.log(res.data);
+        console.log(res.data);
 
-      //armazenando o token no localstorage do navegador
-      setAuth(res.data);
+        //armazenando o token no localstorage do navegador
+        setAuth(res.data);
+      } catch (error) {
+        console.log(error);
+        setUserNotFound(true);
+      }
+
+      // if (!res.data) {
+      //   setUserNotFound(true);
+      // }
+
+      // console.log("AQUI POURA");
+      // console.log(res.data);
     },
     initialValues: {
       email: "",
@@ -63,6 +77,12 @@ function Login() {
         </div>
 
         <form className=" p-4 space-y-6" onSubmit={formik.handleSubmit}>
+          {userNotFound && (
+            <span className="text-red-500 font-bold">
+              E-mail ou senha incorreto(s)
+            </span>
+          )}
+
           <Input
             name="email"
             type="text"
