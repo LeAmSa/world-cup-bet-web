@@ -62,8 +62,8 @@ function Dashboard() {
 
   return (
     <>
-      <header className="bg-red-500 text-white p-4">
-        <div className="container max-w-3xl flex justify-between">
+      <header className="bg-red-500 text-white">
+        <div className="container max-w-3xl flex justify-between p-4">
           <img className="w-28 md:w-40" src="/logo-bg-red.svg" />
           <a href={`/${auth?.user?.username}`}>
             <Icon name="profile" />
@@ -94,8 +94,8 @@ function Dashboard() {
                   homeTeam={match.homeTeam}
                   awayTeam={match.awayTeam}
                   gameTime={format(new Date(match.gameTime), "H:mm")}
-                  homeTeamScore={user?.bets?.[match.id]?.homeTeamScore || ""}
-                  awayTeamScore={user?.bets?.[match.id]?.awayTeamScore || ""}
+                  homeTeamScore={user?.bets?.[match.id]?.homeTeamScore}
+                  awayTeamScore={user?.bets?.[match.id]?.awayTeamScore}
                 />
               ))}
           </div>
