@@ -87,7 +87,7 @@ function Login() {
 
           <button
             type="submit"
-            className="flex justify-center items-center w-full text-white bg-red-500 text-lg md:text-xl px-6 py-3 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex justify-center items-center w-full text-white bg-red-500 text-lg px-6 py-3 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={!formik.isValid || formik.isSubmitting}
           >
             {formik.isSubmitting ? (
