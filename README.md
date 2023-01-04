@@ -184,7 +184,7 @@ Here are some useful resources/libraries used during the development.
 [license-shield]: https://img.shields.io/github/license/LeAmSa/world-cup-bet-web?style=for-the-badge
 [license-url]: https://github.com/LeAmSa/world-cup-bet-web/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/leandroamorimsalles1994
+[linkedin-url]: https://www.linkedin.com/in/leamsa
 [git-url]: https://git-scm.com/
 [nodejs-url]: https://nodejs.org/en/
 [vscode-url]: https://code.visualstudio.com/
